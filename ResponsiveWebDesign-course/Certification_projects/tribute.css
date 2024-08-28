@@ -1,0 +1,31 @@
+
+body{
+  font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+  color: rgb(15, 15, 15);
+}
+
+main{
+  background-color: rgb(220, 220, 220);
+  border-radius: 5px;
+  margin-top: 5%;
+  display: flex;
+  flex-direction:column;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+}
+
+figure{
+  background-color: white;
+  width: 95%;
+  padding: 1%;
+}
+
+#image{
+  max-width: 100%;
+  height: auto; 
+  display: block;
+  
+  margin-left:auto;
+  margin-right: auto;
+}

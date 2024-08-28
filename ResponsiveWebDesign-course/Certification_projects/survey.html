@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="survey.css">
+  </head>
+  <body>
+    <div class="header">
+      <h1 id="title">
+        freeCodeCamp Survey Form
+      </h1>
+      <p id="description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget erat luctus, pretium mi eu, placerat magna.
+      </p>
+    </div>
+    <form id="survey-form" class="form">
+      <div class="item">
+        <label  class="label" for="name" id="name-label">Name</label>
+        <input class="input-box" type="text" id="name" placeholder="Enter your name" required/>
+      </div>
+      <div class="item">
+        <label class="label" for="Email" id="email-label">Email</label>
+        <input class="input-box" type="email" id="email" placeholder="Enter your Email" required/>
+      </div>
+      <div class="item">
+        <label class="label" for="number" id="number-label">Age</label>
+        <input class="input-box" type="number" id="number" min="1" max="100" placeholder="Enter your age"/>
+      </div>
+      <div class="item">
+        <label class="label" for="name">select the best answer?</label>
+        <select class="input-box" type="text" id="dropdown">
+          <option disabled="" selected="" value="">Select an option</option>
+          <option value="Yes">Yes</option>
+          <option value="Maybe">Maybe</option>
+          <option value="Incorrect">Incorrect</option>
+        </select>
+      </div>
+      <div class="item">
+        <label class="label">Are You Sure?</label>
+        <div class="label">
+          <input type="radio" id="Definitely" name="response" value="Definitely">
+          <label class="label" for="Definitely">Definitely</label>
+        </div>
+        <div class="label">
+          <input type="radio" id="Maybe" name="response" value="Maybe">
+          <label class="label" for="Maybe">Maybe</label>
+        </div>
+        <div class="label">
+          <input type="radio" id="NotSure" name="response" value="NotSure">
+          <label class="label" for="NotSure">Not Sure</label>
+        </div>
+      </div>
+      <div class="item">
+        <label for="checkbox" class="label">Check this out!</label>
+        <div class="label">
+          <input type="checkbox" name="checkThis" value="Check">
+          <label for="" class="label">Checked</label>
+        </div>
+        <div class="label">
+          <input type="checkbox" name="checkThis" value="100Check">
+          <label for="" class="label">100$ Check</label>
+        </div>
+        <div class="label">
+          <input type="checkbox" name="checkThis" value="thirdCheck">
+          <label for="" class="label">thirdCheck</label>
+        </div>
+      </div>
+      <div class="item">
+        <label for="textarea" class="label">Add your Comment</label>
+        <textarea name="Comments" id="Comments" placeholder="Write your comment here"></textarea>
+      </div>
+
+      <div class="item">
+        <input type="submit" value="submit" class="input-box submit">
+      </div>    
+    </form>
+  </body>
+</html>

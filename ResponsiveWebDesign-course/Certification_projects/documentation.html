@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="stylesheet" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="documentation.css">
+
+    </head>
+    <body>
+        <nav id="navbar">
+            <header>
+                <h1>Documentation index</h1>
+            </header>
+            <a class="nav-link" href="#overview">
+                <h2>Overview</h2>
+            </a>
+            <a class="nav-link" href="#maven_dependencies">
+                <h2>Maven Dependencies</h2>
+            </a>
+            <a class="nav-link" href="#exploring_the_API">
+                <h2>Exploring the API</h2>
+            </a>
+            <a class="nav-link" href="#simple_example">
+                <h2>Simple Example</h2>
+            </a>
+            <a class="nav-link" href="#class_parametrization">
+                <h2>Class Parametrization</h2>
+            </a>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section" id="overview">
+                <header id="header">
+                    <h1>Overview</h1>
+                </header>
+                <p>In this article, we’ll introduce the Units of Measurement API – which provides <span class="bold">a unified way of representing measures and units in Java.</span></p>
+                <p>While working with a program containing physical quantities, we need to remove the uncertainty about units used. It’s essential that we manage both the number and its unit to prevent errors in calculations.</p>
+                <p>JSR-363 (formerly JSR-275 or javax.measure library) helps us save the development time, and at the same time, makes the code more readable.</p>
+            </section>
+            <section class="main-section" id="maven_dependencies">
+                <header id="header">
+                    <h1>Maven Dependencies</h1>
+                </header>
+                <p>Let’s simply start with the Maven dependency to pull in the library:</p>
+                <code class="codebox">   
+                    <div class="language-topBar">
+                        XML
+                    </div>
+                    <div class="code">                 
+                        <span class="tag">&lt;<span class="tagName" >dependency</span>&gt;</span><br>
+                        &emsp;&emsp;<span class="tag">&lt;<span class="tagName">groupId</span>&gt;</span>javax.measure<span class="tag">&lt;/<span class="tagName">groupId</span>&gt;</span><br>
+                        &emsp;&emsp;<span class="tag">&lt;<span class="tagName">artifactId</span>&gt;</span>unit-api<span class="tag">&lt;/<span class="tagName">artifactId</span>&gt;</span><br>
+                        &emsp;&emsp;<span class="tag">&lt;<span class="tagName">version</span>&gt;</span>1.0<span class="tag">&lt;/<span class="tagName">version</span>&gt;</span><br>
+                        <span class="tag">&lt;<span class="tagName">dependency</span>&gt;</span>
+                    </div>
+                </code>
+                <p>The latest version can be found over on <a href="https://mvnrepository.com/search?q=unit-api">Maven Central</a>.</p>
+                <p>The unit-api project contains a set of interfaces that define how to work with quantities and units. For the examples, we’ll use the reference implementation of JSR-363, which is <a href="https://mvnrepository.com/search?q=unit-ri">unit-ri</a>:</p>
+                <code class="codebox">
+                    <div class="language-topBar">
+                        XML
+                    </div>
+                    <div class="code">                    
+                        <span class="tag">&lt;<span class="tagName" >dependency</span>&gt;</span><br>
+                        &emsp;&emsp;<span class="tag">&lt;<span class="tagName">groupId</span>&gt;</span>tec.units<span class="tag">&lt;/<span class="tagName">groupId</span>&gt;</span><br>
+                        &emsp;&emsp;<span class="tag">&lt;<span class="tagName">artifactId</span>&gt;</span>unit-ri<span class="tag">&lt;/<span class="tagName">artifactId</span>&gt;</span><br>
+                        &emsp;&emsp;<span class="tag">&lt;<span class="tagName">version</span>&gt;</span>1.0.3<span class="tag">&lt;/<span class="tagName">version</span>&gt;</span><br>
+                        <span class="tag">&lt;<span class="tagName">dependency</span>&gt;</span>
+                    </div>
+                </code>
+            </section>
+            <section class="main-section" id="exploring_the_API">
+                <header id="header">
+                    <h1>Exploring the API</h1>
+                </header>
+                <p>Let’s have a look at the example where we want to store water in a tank.</p>
+                <p>The legacy implementation would look like this:</p>
+                
+                <code class="codebox">
+                    <div class="language-topBar">
+                        Java
+                    </div>
+                    <div class="code">                    
+                        <span class="tag">public class WaterTank</span>&#123;<br>
+                        &emsp;&emsp;<span class="tag">public void setWaterQuantity(double quantity)</span>;<br>
+                        &#125;
+                    </div>
+                </code>
+
+                <p>As we can see, the above code does not mention the unit of quantity of water and is not suitable for precise calculations because of the presence of the double type.</p>
+                <p>If a developer mistakenly passes the value with a different unit of measure than the one we’re expecting, it can lead to serious errors in calculations. Such errors are very hard to detect and resolve.</p>
+                <p><span class="bold">The JSR-363 API provides us with the Quantity and Unit interfaces,</span> which resolve this confusion and leave these kinds of errors out of our program’s scope.</p>
+            </section>
+            <section class="main-section" id="simple_example">
+                <header id="header">
+                    <h1>Simple Example</h1>
+                </header>
+                <p>Now, let’s explore and see how this can be useful in our example.</p>
+                <p>As mentioned earlier, JSR-363 contains <span class="bold">the Quantity interface which represents a quantitative property</span> such as volume or area. The library provides numerous sub-interfaces that model the most commonly used quantifiable attributes. Some examples are: Volume, Length, ElectricCharge, Energy, Temperature.</p>
+                <p>We can define the <span class="italic">Quantity&lt;Volume&gt;</span> object, which should store the quantity of water in our example:</p>
+                <code class="codebox">
+                    <div class="language-topBar">
+                        Java
+                    </div>
+                    <div class="code">
+                        <span class="tag">public class WaterTank</span>&#123;<br>
+                        &emsp;&emsp;<span class="tag">public void setCapacityMeasure(Quantity&lt;Volume&gt; capacityMeasure)</span>;<br>
+                        &#125;
+                    </div>
+                </code>
+                <p>Besides the <span class="italic">Quantity</span> interface, we can also use the <span class="italic">Unit</span> interface to identify the unit of measurement for a property. 
+                    Definitions for often used units can be found in the <span class="italic">unit-ri</span> library, such as: 
+                    <ul>
+                        <li>KELVIN</li>
+                        <li>METRE</li>
+                        <li>NEWTON</li>
+                        <li>CELSIUS</li>
+                        <li>FARENHEIT</li>
+                        
+                    </ul>
+                </p>
+            </section>
+            <section class="main-section" id="class_parametrization">
+                <header id="header">
+                    <h1>Class Parametrization</h1>
+                </header>
+                <p>To maintain the dimension consistency, the framework naturally takes advantage of generics.</p>
+                <p>Classes and interfaces are parameterized by their quantity type, which makes it possible to have our units checked at compile time. The compiler will give an error or warning based on what it can identify:</p>
+                <code class="codebox">
+                    <div class="language-topBar">
+                        Java
+                    </div>
+                    <div class="code">
+                        <span class="tag">Unit&lt;Length&gt; Kilometer = MetricPrefix.KILO &#40;METRE&#41;</span>;<br>
+                        &emsp;&emsp;<span class="tag">public void setCapacityMeasure(Quantity&lt;Volume&gt; capacityMeasure)</span>;<br>
+                        &#125;
+                    </div>
+                </code>
+            </section>
+        </main>
+
+    </body>
+</html>

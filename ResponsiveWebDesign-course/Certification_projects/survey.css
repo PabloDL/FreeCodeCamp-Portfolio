@@ -1,0 +1,47 @@
+
+body{
+    background-color: rgb(63, 63, 133);
+    color: white;
+    font-family: Tahoma, Verdana, sans-serif;
+    font-size: 1rem;
+}
+
+.header{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+}
+
+.form{
+    padding: 15px;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(37, 37, 37, 0.66);
+
+}
+
+.item{
+    margin: 15px 30px 0 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box{
+    border-radius: 3px;
+    padding: 9px;
+    font-size: 1rem;
+    border: 0px;
+}
+
+.label{
+    margin: 8px 0 8px 0;
+}
+
+.submit{
+    background-color: #36ae64;
+    border-width: 0px;
+    color: white;
+}
